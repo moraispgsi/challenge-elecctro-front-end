@@ -29,7 +29,6 @@ class TaskInput extends Component {
 
   render() {
     return (
-      <div>
         <input id="task-input"
                onKeyPress={this._handleKeyPress.bind(this)}
                onChange={this._handleChange.bind(this)}
@@ -37,7 +36,6 @@ class TaskInput extends Component {
                type="text"
                placeholder="Click to add new task"
         />
-      </div>
     );
   }
 }

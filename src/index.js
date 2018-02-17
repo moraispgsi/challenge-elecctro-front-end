@@ -7,14 +7,16 @@ import * as storage from 'redux-storage'
 import { createStore, applyMiddleware } from 'redux';
 import registerServiceWorker from './registerServiceWorker';
 import rootReducer from './reducers';
+import merger from 'redux-storage-merger-immutablejs';
 import App from './App';
-import 'font-awesome/css/font-awesome.min.css';
+import 'font-awesome/css/font-awesome.min.css'
+import logo from './logo.png'
+import bg from './bg.jpg'
 import './index.css';
 
-
-//Configure the store be saved and loaded from the local storage(Web Storage)
+//Configure the store to be saved and loaded from the local storage(Web Storage)
 const engine = createEngine('tasks');
-const reducer = storage.reducer(rootReducer);
+const reducer = storage.reducer(rootReducer, merger);
 const middleware = storage.createMiddleware(engine);
 const createStoreWithMiddleware = applyMiddleware(middleware)(createStore);
 const store = createStoreWithMiddleware(reducer, applyMiddleware(logger));//TODO - Logging may not be necessary.
@@ -23,7 +25,12 @@ load(store);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <div>
+      <img id="logo" src={logo} />
+      <App />
+    </div>
   </Provider>,
   document.getElementById('root'));
+
+document.getElementsByTagName("BODY")[0].style.backgroundImage = `url('${bg}')`;
 registerServiceWorker();

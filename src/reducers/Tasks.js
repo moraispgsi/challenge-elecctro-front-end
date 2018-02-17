@@ -6,7 +6,7 @@ import { List, Map } from 'immutable';
 const initialState = List([
     Map({
       id: uuidv1(),
-      text: 'Sample task!',
+      text: 'A random fabulous task!',
       marked: false
     })
   ]
@@ -24,14 +24,14 @@ export default (state = initialState, action) => {
 
     case types.EDIT_TASK:
       const taskEditIndex = state.findIndex((task)=> task.get('id') === action.id);
-      return state.setIn([taskEditIndex, 'text'], true);
+      return state.setIn([taskEditIndex, 'text'], action.text);
 
     case types.MARK_TASK:
       const taskMarkIndex = state.findIndex((task)=> task.get('id') === action.id);
       return state.setIn([taskMarkIndex, 'marked'], true);
 
     case types.UNMARK_TASK:
-      const taskUnmarkIndex = state.findIndex((task)=> task.get('id') === action.id)
+      const taskUnmarkIndex = state.findIndex((task)=> task.get('id') === action.id);
       return state.setIn([taskUnmarkIndex, 'marked'], false);
 
     default:

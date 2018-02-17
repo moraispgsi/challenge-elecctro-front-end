@@ -5,6 +5,7 @@ import Task from '../components/Task'
 
 class TaskList extends Component {
   render() {
+    console.log('here:', this.props.tasks)
     return (
       <ul id="task-list">
         {this.props.tasks.toJS().map((task) => (

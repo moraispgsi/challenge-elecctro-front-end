@@ -3,28 +3,27 @@
 
 body, html {
   margin: 0;
-  min-height: 100%;
+  min-height: 150%;
 }
 
 html {
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#87e0fd+0,53cbf1+76,05abe0+100 */
-  background: #87e0fd; /* Old browsers */
-  background: -moz-linear-gradient(top, #87e0fd 0%, #53cbf1 76%, #05abe0 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, #87e0fd 0%,#53cbf1 76%,#05abe0 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, #87e0fd 0%,#53cbf1 76%,#05abe0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e0fd', endColorstr='#05abe0',GradientType=0 ); /* IE6-9 */
+
 }
 
+#logo {
+  margin-top: 10%;
+  display: block;
+  padding-right: 24px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-#main-task-container
-{
+#main-task-container {
   position: relative;
   background:#FFF;
-
 }
 
-#main-task-container:before, #main-task-container:after
-{
+#main-task-container:before, #main-task-container:after {
   z-index: -1;
   position: absolute;
   content: "";
@@ -32,14 +31,13 @@ html {
   left: 10px;
   width: 50%;
   top: 80%;
-  max-width:300px;
+  max-width: 300px;
   background: #777;
   box-shadow: 0 15px 10px #777;
   transform: rotate(-3deg);
 }
 
-#main-task-container:after
-{
+#main-task-container:after {
   transform: rotate(3deg);
   right: 10px;
   left: auto;
@@ -49,11 +47,13 @@ html {
   margin-left: 20%;
   margin-right: 20%;
   margin-top: 5%;
-  height: 400px;
+  height: 100%;
+  margin-bottom: 10px;
 }
 
 #task-input-container {
   height: 100px;
+  width: 100%;
   background-color: #405157;
   border-bottom: solid;
   border-bottom-color: #ea196a;
@@ -61,16 +61,92 @@ html {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
 }
 
 #task-input {
   margin-left: 20px;
-  width: 100%;
+  width: calc(100% - 20px - 50px - 20px);
   background: transparent;
   border: none;
   font-family: Dosis;
   font-size: 32pt;
   color: white;
+}
+
+#setting-button {
+  width: 50px;
+  margin-right: 10px;
+  margin-left: 10px;
+  padding-top: 10px;
+  cursor: pointer;
+  filter: brightness(1);
+  justify-self: flex-end;
+}
+
+#setting-button:hover {
+  filter: brightness(1.2);
+}
+
+#settings {
+  position: absolute;
+  right: 0;
+  top: 100px;
+  background-color: #405157;
+  border-bottom: solid;
+  border-bottom-color: #ea196a;
+  border-bottom-width: thick;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+
+#settings-sort-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#settings-sort-text {
+  margin-right: 20px;
+}
+
+#settings-sort-icon {
+  height: 25px;
+  width: 25px;
+  margin-right: -3px;
+  filter: brightness(1.0);
+  cursor: pointer;
+}
+
+#settings-sort-icon:hover {
+  filter: brightness(1.2);
+}
+
+#settings-show-marked-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#settings-show-marked-text {
+  margin-right: 20px;
+}
+
+#settings .checkbox-container input:checked ~ .checkbox-checkmark {
+  background-color: #ea196a;
+}
+
+.settings-item {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20pt;
+  color: white;
+  padding-left: 20px;
 }
 
 #task-list-container {
@@ -82,6 +158,7 @@ html {
   margin: 0;
   padding: 0;
 }
+
 
 .task {
   color: #ea196a;
@@ -100,12 +177,7 @@ html {
   cursor: pointer;
 }
 
-
-
-
-
-
-.container {
+.checkbox-container {
   display: block;
   position: relative;
   cursor: pointer;
@@ -117,13 +189,13 @@ html {
 }
 
 /* Hide the browser's default checkbox */
-.container input {
+.checkbox-container input {
   opacity: 0;
   cursor: pointer;
 }
 
 /* Create a custom checkbox */
-.checkmark {
+.checkbox-checkmark {
   position: absolute;
   left: 0;
   top: 4px;
@@ -133,29 +205,29 @@ html {
 }
 
 /* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
+.checkbox-container:hover input ~ .checkbox-checkmark {
   background-color: #ccc;
 }
 
 /* When the checkbox is checked, add a blue background */
-.container input:checked ~ .checkmark {
+.checkbox-container input:checked ~ .checkbox-checkmark {
   background-color: #405157;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
+.checkbox-checkmark:after {
   content: "";
   position: absolute;
   display: none;
 }
 
 /* Show the checkmark when checked */
-.container input:checked ~ .checkmark:after {
+.checkbox-container input:checked ~ .checkbox-checkmark:after {
   display: block;
 }
 
 /* Style the checkmark/indicator */
-.container .checkmark:after {
+.checkbox-container .checkbox-checkmark:after {
   left: 9px;
   top: 5px;
   width: 5px;
@@ -170,4 +242,60 @@ html {
 .task-text {
   margin-left: 20px;
   color: #405157;
+  width: calc(100% - 20px - 20px - 25px);
+  cursor: text;
+}
+
+.task-editing-input {
+  width: calc(100% - 20px);
+  background: transparent;
+  border: none;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13pt;
+  right: 0;
+  color: #405157;
+  border-bottom: dashed;
+  border-bottom-width: 2px;
+  border-color:  #ea196a;
+}
+
+.task-cross {
+  cursor: pointer;
+  margin-right: 20px;
+  width: 20px;
+  display: none;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  filter: brightness(1.4);
+}
+
+.task-cross:hover {
+  filter: brightness(1);
+}
+
+.task:hover .task-cross {
+  display: block;
+}
+
+.cross-container {
+  border-left: 1px solid white;
+}
+
+@media only screen and (max-width: 500px) {
+
+  #logo {
+    width: 80%;
+  }
+
+  #main-task-container {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5%;
+  }
+
+  .task-cross {
+    margin-right: 10px;
+  }
+
 }
