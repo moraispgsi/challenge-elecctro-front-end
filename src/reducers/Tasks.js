@@ -1,8 +1,7 @@
-import * as types from '../constants/ActionTypes';
+import * as types from '../constants/TaskActionTypes';
 import uuidv1 from 'uuid/v1';
 import { List, Map } from 'immutable';
 
-//TODO: Later we will no longer be generating IDs in the client, we will have the server generate it.
 const initialState = List([
     Map({
       id: uuidv1(),

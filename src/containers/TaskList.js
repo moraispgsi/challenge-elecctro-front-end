@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Task from '../components/Task'
+import { getVisibleTasks } from '../selectors/TasksSelector'
 
 class TaskList extends Component {
   render() {
-    console.log('here:', this.props.tasks)
     return (
       <ul id="task-list">
         {this.props.tasks.toJS().map((task) => (
@@ -20,11 +19,7 @@ class TaskList extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  tasks: state.tasks
+  tasks: getVisibleTasks(state)
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(TaskList);
+export default connect(mapStateToProps, null)(TaskList);

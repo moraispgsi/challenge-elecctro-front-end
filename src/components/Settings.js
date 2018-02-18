@@ -1,19 +1,30 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { removeTask, editTask, markTask, unmarkTask } from '../actions/TaskActions'
+import { showMarked, notShowMarked, sortAscending, sortDescending } from '../actions/SettingsActions'
+import * as sortingTypes from '../constants/SortTypes'
 import ascendingIcon from '../ascending.svg'
 import descendingIcon from '../descending.svg'
 
-
 class Settings extends Component {
 
-  constructor(props) {
-    super(props);
+  _handleSortClick() {
+    switch(this.props.sorting) {
+      case sortingTypes.ASCENDING:
+        this.props.sortDescending();
+        break;
+      default:
+        this.props.sortAscending();
+    }
   }
 
-  _handleClick() {
-    //todo
+  sortIcon() {
+    switch(this.props.sorting) {
+      case sortingTypes.ASCENDING:
+        return descendingIcon;
+      default:
+        return ascendingIcon;
+    }
   }
 
   render() {
@@ -23,7 +34,10 @@ class Settings extends Component {
           <span id="settings-sort-text">
             Sort
           </span>
-          <img id="settings-sort-icon" src={ascendingIcon} />
+          <img id="settings-sort-icon"
+               src={this.sortIcon()}
+               onClick={this._handleSortClick.bind(this)}
+          />
         </div>
         <div id="settings-show-marked-container" className="settings-item">
           <span id="settings-show-marked-text">
@@ -32,8 +46,8 @@ class Settings extends Component {
           <label className="checkbox-container">
             <input className="checkbox"
                    type="checkbox"
-                   checked={this.props.marked}
-                   onClick={this._handleClick.bind(this)}/>
+                   checked={this.props.showingMarked}
+                   onClick={() => this.props.showingMarked ? this.props.notShowMarked() : this.props.showMarked() }/>
             <span className="checkbox-checkmark"/>
           </label>
         </div>
@@ -43,12 +57,21 @@ class Settings extends Component {
 }
 
 Settings.propTypes = {
-
+  sorting: PropTypes.string,
+  showingMarked: PropTypes.bool
 };
+
+const mapStateToProps = (state) => ({
+  sorting: state.settings.get('sorting'),
+  showingMarked: state.settings.get('showingMarked')
+});
 
 //Mapping the dispatcher to prop functions(actions)
 const mapDispatchToProps = (dispatch, ownProps) => ({
-
+  showMarked: () => dispatch (showMarked()),
+  notShowMarked: () => dispatch (notShowMarked()),
+  sortAscending: () => dispatch (sortAscending()),
+  sortDescending: () => dispatch (sortDescending())
 });
 
-export default connect(null, mapDispatchToProps)(Settings);
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);

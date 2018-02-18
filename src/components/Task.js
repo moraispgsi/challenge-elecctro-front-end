@@ -50,7 +50,7 @@ class Task extends Component {
         style={{
           textDecoration: this.props.marked ? 'line-through' : 'none'
         }}
-      >
+        >
         <label className="checkbox-container">
           <input className="checkbox"
                  type="checkbox"

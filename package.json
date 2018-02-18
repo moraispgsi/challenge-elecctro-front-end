@@ -4,7 +4,6 @@
   "homepage": "http://moraispgsi.github.io/challenge-elecctro-front-end",
   "private": true,
   "dependencies": {
-    "font-awesome": "^4.7.0",
     "immutable": "^3.8.2",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",

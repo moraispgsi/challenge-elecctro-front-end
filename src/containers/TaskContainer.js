@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
 import TaskInput from '../components/TaskInput'
 import TaskList from '../containers/TaskList'
 import settingIcon from '../settings.png'
 import Settings from '../components/Settings'
 
-class TaskContainer extends Component {
+export default class TaskContainer extends Component {
 
   constructor() {
     super();
@@ -35,14 +33,3 @@ class TaskContainer extends Component {
       );
   }
 }
-
-
-const mapStateToProps = (state) => ({
-  tasks: state.tasks
-});
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
-
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(TaskContainer);
