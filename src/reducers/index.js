@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import TasksReducer from './Tasks';
-import TaskFilters from './TaskFilters';
+import TaskFilters from './Settings';
 
 const rootReducer = combineReducers({
   tasks: TasksReducer,

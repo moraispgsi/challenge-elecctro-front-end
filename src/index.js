@@ -9,10 +9,8 @@ import registerServiceWorker from './registerServiceWorker';
 import rootReducer from './reducers';
 import merger from 'redux-storage-merger-immutablejs';
 import App from './App';
-import 'font-awesome/css/font-awesome.min.css'
-import logo from './logo.png'
-import bg from './bg.jpg'
-import './index.css';
+import bg from './img/bg.jpg'
+import './css/index.css';
 
 //Configure the store to be saved and loaded from the local storage(Web Storage)
 const engine = createEngine('tasks');
@@ -25,10 +23,7 @@ load(store);
 
 ReactDOM.render(
   <Provider store={store}>
-    <div>
-      <img id="logo" src={logo} />
       <App />
-    </div>
   </Provider>,
   document.getElementById('root'));
 

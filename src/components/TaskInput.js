@@ -15,11 +15,13 @@ class TaskInput extends Component {
 
   _handleKeyPress(e) {
     if (e.key === 'Enter') {
-      this.props.addTask(this.state.inputValue);
-      //Clearing the input value
-      this.setState({
-        inputValue: ''
-      });
+      if(this.state.inputValue.trim().length !== 0) {
+        this.props.addTask(this.state.inputValue.trim());
+        //Clearing the input value
+        this.setState({
+          inputValue: ''
+        });
+      }
     }
   }
 

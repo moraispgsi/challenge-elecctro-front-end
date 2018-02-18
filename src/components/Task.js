@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { removeTask, editTask, markTask, unmarkTask } from '../actions/TaskActions'
-import cross from '../cross.svg'
+import { hideSettings } from '../actions/SettingsActions'
+import cross from '../img/cross.svg'
+
 
 class Task extends Component {
 
@@ -28,7 +30,7 @@ class Task extends Component {
              onBlur={() => {
                if(this.state.textValue.length === 0) {
                  this.props.removeTask(this.props.id);
-               } else {
+               } else if(this.state.textValue !== this.props.text) {
                  this.props.editTask(this.props.id, this.state.textValue);
                }
                this.setState({isEditing: false});
@@ -39,7 +41,6 @@ class Task extends Component {
                }
              }}
              type="text" />
-
   }
 
   render() {
@@ -47,6 +48,7 @@ class Task extends Component {
       <li
         className="task"
         autoFocus
+        onClick={() => this.props.hideSettings()}
         style={{
           textDecoration: this.props.marked ? 'line-through' : 'none'
         }}
@@ -58,7 +60,10 @@ class Task extends Component {
                  onClick={this._handleClick.bind(this)}/>
           <span className="checkbox-checkmark"/>
         </label>
-        <span className="task-text" onClick={() => this.setState({isEditing: true})}>
+        <span className="task-text" onClick={() => {
+          this.props.hideSettings()
+          this.setState({isEditing: true})
+          }}>
         {this.renderText()}
         </span>
         <div className="cross-container">
@@ -86,10 +91,11 @@ Task.propTypes = {
 
 //Mapping the dispatcher to prop functions(actions)
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    removeTask: (id) => dispatch (removeTask(id)),
-    editTask: (id, text) => dispatch (editTask(id, text)),
-    markTask: (id) => dispatch (markTask(id)),
-    unmarkTask: (id) => dispatch (unmarkTask(id))
+  removeTask: (id) => dispatch (removeTask(id)),
+  editTask: (id, text) => dispatch (editTask(id, text)),
+  markTask: (id) => dispatch (markTask(id)),
+  unmarkTask: (id) => dispatch (unmarkTask(id)),
+  hideSettings: () => dispatch (hideSettings())
 });
 
 export default connect(null, mapDispatchToProps)(Task);

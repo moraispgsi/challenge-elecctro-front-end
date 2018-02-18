@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { showMarked, notShowMarked, sortAscending, sortDescending } from '../actions/SettingsActions'
 import * as sortingTypes from '../constants/SortTypes'
-import ascendingIcon from '../ascending.svg'
-import descendingIcon from '../descending.svg'
+import ascendingIcon from '../img/ascending.svg'
+import descendingIcon from '../img/descending.svg'
 
 class Settings extends Component {
 
@@ -29,17 +29,18 @@ class Settings extends Component {
 
   render() {
     return (
-      <div id="settings">
-        <div id="settings-sort-container"  className="settings-item">
+      <div id="settings" onClick={(e) => e.stopPropagation()}>
+        <div id="settings-sort-container" className="settings-item" onClick={this._handleSortClick.bind(this)}>
           <span id="settings-sort-text">
             Sort
           </span>
           <img id="settings-sort-icon"
                src={this.sortIcon()}
-               onClick={this._handleSortClick.bind(this)}
           />
         </div>
-        <div id="settings-show-marked-container" className="settings-item">
+        <div id="settings-show-marked-container"
+             className="settings-item"
+             onClick={() => this.props.showingMarked ? this.props.notShowMarked() : this.props.showMarked()}>
           <span id="settings-show-marked-text">
             Show Marked
           </span>
@@ -47,7 +48,7 @@ class Settings extends Component {
             <input className="checkbox"
                    type="checkbox"
                    checked={this.props.showingMarked}
-                   onClick={() => this.props.showingMarked ? this.props.notShowMarked() : this.props.showMarked() }/>
+                   />
             <span className="checkbox-checkmark"/>
           </label>
         </div>
@@ -62,6 +63,7 @@ Settings.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
+  showingSettings: state.settings.get('showingSettings'),
   sorting: state.settings.get('sorting'),
   showingMarked: state.settings.get('showingMarked')
 });

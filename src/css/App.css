@@ -106,6 +106,7 @@ html {
 }
 
 #settings-sort-container {
+  cursor: pointer;
   padding: 20px;
   display: flex;
   flex-direction: row;
@@ -129,6 +130,7 @@ html {
 }
 
 #settings-show-marked-container {
+  cursor: pointer;
   padding: 20px;
   display: flex;
   flex-direction: row;
@@ -247,7 +249,7 @@ html {
   overflow: hidden;
   padding-right: 10px;
   text-overflow: ellipsis;
-  cursor: text;
+  cursor: pointer;
 }
 
 .task-editing-input {

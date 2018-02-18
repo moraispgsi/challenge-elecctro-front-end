@@ -1,6 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import TaskContainer from './containers/TaskContainer'
-import './App.css';
+import './css/App.css';
+import logo from './img/logo.png'
+import { hideSettings } from "./actions/SettingsActions";
+import { connect } from 'react-redux'
 
 class App extends Component {
 
@@ -10,9 +13,16 @@ class App extends Component {
 
   render() {
     return (
-      <TaskContainer />
+      <div onClick={(e) => this.props.hideSettings()}>
+        <img id="logo" src={logo} />
+        <TaskContainer />
+      </div>
     );
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  hideSettings: () => dispatch (hideSettings())
+});
+
+export default connect(null, mapDispatchToProps)(App);

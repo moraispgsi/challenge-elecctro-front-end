@@ -3,6 +3,7 @@ import * as types from '../constants/SettingsActionTypes'
 import * as sortType from '../constants/SortTypes'
 
 const initialState = Map({
+  showingSettings: false,
   showingMarked: true,
   sorting: sortType.NONE
 });
@@ -10,6 +11,12 @@ const initialState = Map({
 export default (state = initialState, action) => {
 
   switch (action.type) {
+    case types.SHOW_SETTINGS:
+      return state.set('showingSettings', true);
+
+    case types.HIDE_SETTINGS:
+      return state.set('showingSettings', false);
+
     case types.SHOW_MARKED:
       return state.set('showingMarked', true);
 
