@@ -297,6 +297,10 @@ html {
     margin-top: 5%;
     margin-bottom: 10px;
   }
+
+  body {
+    background-position-x: -200px;
+  }
 }
 
 
