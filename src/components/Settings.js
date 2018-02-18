@@ -30,24 +30,26 @@ class Settings extends Component {
   render() {
     return (
       <div id="settings" onClick={(e) => e.stopPropagation()}>
-        <div id="settings-sort-container" className="settings-item" onClick={this._handleSortClick.bind(this)}>
-          <span id="settings-sort-text">
+        <div id="settings-sort-container" className="settings-item">
+          <span id="settings-sort-text" onClick={this._handleSortClick.bind(this)}>
             Sort
           </span>
           <img id="settings-sort-icon"
                src={this.sortIcon()}
+               onClick={this._handleSortClick.bind(this)}
           />
         </div>
         <div id="settings-show-marked-container"
-             className="settings-item"
-             onClick={() => this.props.showingMarked ? this.props.notShowMarked() : this.props.showMarked()}>
-          <span id="settings-show-marked-text">
+             className="settings-item">
+          <span id="settings-show-marked-text"
+                onClick={() => this.props.showingMarked ? this.props.notShowMarked() : this.props.showMarked()}>
             Show Marked
           </span>
-          <label className="checkbox-container">
+          <label className="checkbox-container" >
             <input className="checkbox"
                    type="checkbox"
                    checked={this.props.showingMarked}
+                   onClick={() => this.props.showingMarked ? this.props.notShowMarked() : this.props.showMarked()}
                    />
             <span className="checkbox-checkmark"/>
           </label>

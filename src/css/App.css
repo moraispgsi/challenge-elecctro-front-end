@@ -106,7 +106,6 @@ html {
 }
 
 #settings-sort-container {
-  cursor: pointer;
   padding: 20px;
   display: flex;
   flex-direction: row;
@@ -116,6 +115,8 @@ html {
 
 #settings-sort-text {
   margin-right: 20px;
+  width: 100%;
+  cursor: pointer;
 }
 
 #settings-sort-icon {
@@ -130,7 +131,6 @@ html {
 }
 
 #settings-show-marked-container {
-  cursor: pointer;
   padding: 20px;
   display: flex;
   flex-direction: row;
@@ -140,6 +140,8 @@ html {
 
 #settings-show-marked-text {
   margin-right: 20px;
+  cursor: pointer;
+  width: 100%;
 }
 
 #settings .checkbox-container input:checked ~ .checkbox-checkmark {
